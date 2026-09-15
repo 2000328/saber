@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projeto SABER</title>
+  <meta name="description" content="Índice completo dos blocos e capítulos do Projeto SABER." />
+  <style>
+:root, [data-theme="light"] {
+  --bg: #f7f6f2;
+  --surface: #fbfbf9;
+  --surface-2: #f1eee9;
+  --text: #28251d;
+  --muted: #6f6b63;
+  --border: #d8d3cb;
+  --primary: #01696f;
+  --shadow: 0 12px 32px rgba(40,37,29,0.08);
+  --radius: 18px;
+}
+[data-theme="dark"] {
+  --bg: #171614;
+  --surface: #1d1b19;
+  --surface-2: #252320;
+  --text: #ece7dd;
+  --muted: #b2aba0;
+  --border: #3a362f;
+  --primary: #4f98a3;
+  --shadow: 0 16px 36px rgba(0,0,0,0.28);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+.container {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+}
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(14px);
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  border-bottom: 1px solid var(--border);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--primary), #7a39bb);
+  box-shadow: var(--shadow);
+}
+.nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14px;
+}
+.nav a:hover { color: var(--text); }
+button.theme-toggle {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+.hero {
+  padding: 72px 0 44px;
+}
+.kicker {
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 13px;
+  background: var(--surface);
+}
+h1 {
+  margin: 18px 0 14px;
+  font-size: clamp(2.6rem, 6vw, 5.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  max-width: 10ch;
+}
+.lead {
+  max-width: 70ch;
+  color: var(--muted);
+  font-size: 1.08rem;
+}
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+}
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border-color: transparent;
+}
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text);
+}
+.section {
+  padding: 28px 0 48px;
+}
+.section h2 {
+  font-size: clamp(1.5rem, 2vw, 2.2rem);
+  letter-spacing: -0.03em;
+  margin: 0 0 8px;
+}
+.section p.intro {
+  color: var(--muted);
+  margin: 0 0 22px;
+  max-width: 70ch;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 18px;
+}
+.card {
+  grid-column: span 6;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+.card.large { grid-column: span 12; }
+.block-tag {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.card h3 {
+  margin: 0 0 6px;
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+}
+.card .subtitle {
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.chapter-list {
+  margin: 0;
+  padding-left: 20px;
+}
+.chapter-list li {
+  margin: 8px 0;
+}
+.steps {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.steps ol {
+  margin: 0;
+  padding-left: 22px;
+}
+.steps li {
+  margin: 12px 0;
+}
+code, pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+pre {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+footer {
+  padding: 34px 0 64px;
+  color: var(--muted);
+}
+.small {
+  font-size: 14px;
+}
+@media (max-width: 860px) {
+  .card, .card.large { grid-column: span 12; }
+  h1 { max-width: none; }
+  .nav { align-items: flex-start; flex-direction: column; }
+}
+</style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Projeto SABER</span>
+      </div>
+      <div style="display:flex; gap:16px; flex-wrap:wrap; align-items:center;">
+        <a href="#blocos">Blocos</a>
+        <a href="#github-pages">GitHub Pages</a>
+        <a href="#estrutura">Estrutura</a>
+        <button class="theme-toggle" data-theme-toggle aria-label="Alternar tema">Tema</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="kicker">Site estático para GitHub Pages</span>
+        <h1>Como publicar o Projeto SABER no GitHub Pages</h1>
+        <p class="lead">Se já escolheste a opção 1, estás no caminho certo: GitHub + GitHub Pages é a forma mais simples, gratuita e robusta de pôr todos os teus ficheiros online com navegação, leitura limpa e um link público fácil de partilhar.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#github-pages">Ver os passos</a>
+          <a class="btn btn-secondary" href="#blocos">Ver estrutura sugerida</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="github-pages">
+      <div class="container">
+        <h2>Como criar GitHub Pages</h2>
+        <p class="intro">Faz isto uma única vez no teu repositório. Depois, cada atualização é só carregar novos ficheiros e esperar alguns segundos.</p>
+        <div class="steps">
+          <ol>
+            <li>Entra no teu repositório no GitHub.</li>
+            <li>Clica em <strong>Settings</strong> no menu superior do repositório.</li>
+            <li>Na coluna da esquerda, entra em <strong>Pages</strong>.</li>
+            <li>Em <strong>Build and deployment</strong>, escolhe <strong>Deploy from a branch</strong>.</li>
+            <li>Em <strong>Branch</strong>, seleciona <strong>main</strong> e, na pasta, escolhe <strong>/root</strong>.</li>
+            <li>Clica em <strong>Save</strong>.</li>
+            <li>Espera cerca de 1 a 3 minutos. O GitHub vai mostrar o link do teu site, normalmente no formato <code>https://teu-utilizador.github.io/nome-do-repositorio/</code>.</li>
+            <li>Garante que o ficheiro principal se chama <code>index.html</code> e está na raiz do repositório.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="estrutura">
+      <div class="container">
+        <h2>Estrutura recomendada</h2>
+        <p class="intro">Esta organização ajuda-te a manter os blocos separados, facilita a atualização dos ficheiros e deixa o projeto preparado para crescer sem se tornar confuso.</p>
+        <pre>projeto-saber/
+├── index.html
+├── README.md
+├── 01_SaberSentir/
+├── 02_SaberSer/
+├── 03_SaberSaber/
+├── 04_SaberFazer/
+├── 05_SaberEstar/
+└── 06_Integracao/</pre>
+      </div>
+    </section>
+
+    <section class="section" id="blocos">
+      <div class="container">
+        <h2>Blocos do projeto</h2>
+        <p class="intro">Abaixo tens a arquitetura editorial completa do Projeto SABER, tal como a organizámos ao longo da tua obra.</p>
+        <div class="grid">
+          
+    <article class="card" id="01_SaberSentir">
+      <div class="block-tag">01_SaberSentir</div>
+      <h3>Saber Sentir</h3>
+      <div class="subtitle">Bloco 1 — A Gramática da Experiência Emocional</div>
+      <ol class="chapter-list">
+        <li>Capítulo 1 — A Gramática da Experiência</li>
+<li>Capítulo 2 — Consciência Emocional</li>
+<li>Capítulo 3 — Autorregulação e Maturidade</li>
+<li>Capítulo 4 — Empatia e Presença</li>
+<li>Capítulo 5 — Liderança</li>
+<li>Capítulo 6 — Aprendizagem</li>
+<li>Capítulo 7 — Emoção, Conflito e Reparação</li>
+<li>Capítulo 8 — Transformação Digital</li>
+<li>Capítulo 9 — Observação</li>
+      </ol>
+    </article>
+    
+    <article class="card" id="02_SaberSer">
+      <div class="block-tag">02_SaberSer</div>
+      <h3>Saber Ser</h3>
+      <div class="subtitle">Bloco 2 — Habitar a Própria Vida</div>
+      <ol class="chapter-list">
+        <li>Capítulo 1 — O Centro Invisível</li>
+<li>Capítulo 2 — Identidade e Autoconceito</li>
+<li>Capítulo 3 — Valores e Escolhas</li>
+<li>Capítulo 4 — Caráter e Integridade</li>
+<li>Capítulo 5 — Autonomia, Agência e Responsabilidade</li>
+<li>Capítulo 6 — Autenticidade, Adaptação e Coerência</li>
+<li>Capítulo 7 — Desenvolvimento ao Longo da Vida</li>
+<li>Capítulo 8 — Saber Ser e Relação com os Outros</li>
+<li>Capítulo 9 — Saber Ser e Trabalho</li>
+<li>Capítulo 10 — Saber Ser e Liderança</li>
+      </ol>
+    </article>
+    
+    <article class="card" id="03_SaberSaber">
+      <div class="block-tag">03_SaberSaber</div>
+      <h3>Saber Saber</h3>
+      <div class="subtitle">Bloco 3 — A Arte de Aprender a Aprender</div>
+      <ol class="chapter-list">
+        <li>Capítulo 1 — O Que Significa Saber</li>
+<li>Capítulo 2 — Literacia e Compreensão</li>
+<li>Capítulo 3 — Conhecimento, Aprendizagem e Desenvolvimento</li>
+<li>Capítulo 4 — Pensamento Crítico</li>
+<li>Capítulo 5 — Metacognição e Aprendizagem Autorregulada</li>
+<li>Capítulo 6 — Curiosidade, Motivação e Abertura</li>
+<li>Capítulo 7 — Conhecimento e Erro</li>
+<li>Capítulo 8 — Saber Saber e Emoções</li>
+<li>Capítulo 9 — Saber Saber e Relações</li>
+<li>Capítulo 10 — Desenvolver o Saber Saber</li>
+      </ol>
+    </article>
+    
+    <article class="card" id="04_SaberFazer">
+      <div class="block-tag">04_SaberFazer</div>
+      <h3>Saber Fazer</h3>
+      <div class="subtitle">Bloco 4 — Da Intenção à Ação</div>
+      <ol class="chapter-list">
+        <li>Capítulo 1 — Da Intenção à Ação</li>
+<li>Capítulo 2 — Autoeficácia e Agência</li>
+<li>Capítulo 3 — Competência e Desempenho</li>
+<li>Capítulo 4 — Aprendizagem Experiencial</li>
+<li>Capítulo 5 — Prática Deliberada e Melhoria</li>
+<li>Capítulo 6 — Resolução de Problemas</li>
+<li>Capítulo 7 — Tomada de Decisão</li>
+<li>Capítulo 8 — Organização e Produtividade</li>
+<li>Capítulo 9 — Trabalho em Equipa</li>
+<li>Capítulo 10 — Comunicação Orientada para a Ação</li>
+<li>Capítulo 11 — Inovação e Execução</li>
+<li>Capítulo 12 — Saber Fazer e Emoções</li>
+      </ol>
+    </article>
+    
+    <article class="card" id="05_SaberEstar">
+      <div class="block-tag">05_SaberEstar</div>
+      <h3>Saber Estar</h3>
+      <div class="subtitle">Bloco 5 — A Presença que Conta</div>
+      <ol class="chapter-list">
+        <li>Capítulo 1 — A Presença que Conta</li>
+<li>Capítulo 2 — Comunicação, Escuta e Contexto</li>
+<li>Capítulo 3 — Respeito e Diferença</li>
+<li>Capítulo 4 — Saber Estar em Equipas</li>
+<li>Capítulo 5 — Conflito, Desacordo e Reparação</li>
+<li>Capítulo 6 — Ética Relacional</li>
+<li>Capítulo 7 — Saber Estar na Educação</li>
+<li>Capítulo 8 — Saber Estar na Liderança</li>
+<li>Capítulo 9 — Saber Estar em Ambientes Digitais</li>
+<li>Capítulo 10 — O Que Observar</li>
+      </ol>
+    </article>
+    
+    <article class="card" id="06_Integracao">
+      <div class="block-tag">06_Integracao</div>
+      <h3>Integração</h3>
+      <div class="subtitle">Bloco 6 — Os Cinco Saberes em Ação</div>
+      <ol class="chapter-list">
+        <li>Capítulo 1 — Por Que Razão Integrar</li>
+<li>Capítulo 2 — O Mapa dos Cinco Saberes</li>
+<li>Capítulo 3 — Um Modelo de Integração</li>
+<li>Capítulo 4 — Integração e Agência</li>
+<li>Capítulo 5 — Tensões e Dilemas</li>
+<li>Capítulo 6 — O Indivíduo Integrado</li>
+<li>Capítulo 7 — Educação Integrada</li>
+<li>Capítulo 8 — Formação Executiva Integrada</li>
+<li>Capítulo 9 — Liderança Integrada</li>
+<li>Capítulo 10 — Equipas, Cultura e Transformação Digital</li>
+<li>Capítulo 11 — Ética Integrada</li>
+      </ol>
+    </article>
+    
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Atualizar o site</h2>
+        <p class="intro">Depois do Pages estar ativo, atualizar é simples. O truque é nunca mexer no processo: só substituir ficheiros, fazer commit e aguardar nova publicação.</p>
+        <div class="steps">
+          <ol>
+            <li>Carrega novos ficheiros para o repositório, ou arrasta-os para a interface web do GitHub.</li>
+            <li>Se mudares um capítulo, mantém o mesmo nome do ficheiro para não quebrares links.</li>
+            <li>No fim da página, escreve uma mensagem curta como <code>Atualização do Bloco 3</code>.</li>
+            <li>Clica em <strong>Commit changes</strong>.</li>
+            <li>Espera 1 ou 2 minutos e faz refresh ao site público.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Erros comuns</h2>
+        <div class="grid">
+          <article class="card large">
+            <h3>O site não aparece</h3>
+            <ol class="chapter-list">
+              <li>Verifica se existe um <code>index.html</code> na raiz do repositório.</li>
+              <li>Confirma se o Pages está configurado para a branch <code>main</code> e pasta <code>/root</code>.</li>
+              <li>Espera alguns minutos; a primeira publicação pode demorar mais.</li>
+              <li>Se o repositório for privado, confirma se o teu plano GitHub permite Pages privado ou torna-o público.</li>
+            </ol>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container small">
+      Projeto SABER — estrutura editorial e publicação web via GitHub Pages.
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const btn = document.querySelector('[data-theme-toggle]');
+      const root = document.documentElement;
+      let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      root.setAttribute('data-theme', theme);
+      btn.addEventListener('click', function() {
+        theme = theme === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', theme);
+      });
+    })();
+  </script>
+</body>
+</html>
