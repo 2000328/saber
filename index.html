@@ -1,462 +1,408 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projeto SABER</title>
-  <meta name="description" content="Índice completo dos blocos e capítulos do Projeto SABER." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-:root, [data-theme="light"] {
-  --bg: #f7f6f2;
-  --surface: #fbfbf9;
-  --surface-2: #f1eee9;
-  --text: #28251d;
-  --muted: #6f6b63;
-  --border: #d8d3cb;
-  --primary: #01696f;
-  --shadow: 0 12px 32px rgba(40,37,29,0.08);
-  --radius: 18px;
-}
-[data-theme="dark"] {
-  --bg: #171614;
-  --surface: #1d1b19;
-  --surface-2: #252320;
-  --text: #ece7dd;
-  --muted: #b2aba0;
-  --border: #3a362f;
-  --primary: #4f98a3;
-  --shadow: 0 16px 36px rgba(0,0,0,0.28);
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-}
-.container {
-  width: min(1180px, calc(100% - 32px));
-  margin: 0 auto;
-}
-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  backdrop-filter: blur(14px);
-  background: color-mix(in srgb, var(--bg) 86%, transparent);
-  border-bottom: 1px solid var(--border);
-}
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 14px 0;
-}
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-.logo {
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--primary), #7a39bb);
-  box-shadow: var(--shadow);
-}
-.nav a {
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 14px;
-}
-.nav a:hover { color: var(--text); }
-button.theme-toggle {
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
-  border-radius: 999px;
-  padding: 10px 14px;
-  cursor: pointer;
-}
-.hero {
-  padding: 72px 0 44px;
-}
-.kicker {
-  display: inline-block;
-  padding: 8px 12px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  color: var(--muted);
-  font-size: 13px;
-  background: var(--surface);
-}
-h1 {
-  margin: 18px 0 14px;
-  font-size: clamp(2.6rem, 6vw, 5.6rem);
-  line-height: 0.95;
-  letter-spacing: -0.05em;
-  max-width: 10ch;
-}
-.lead {
-  max-width: 70ch;
-  color: var(--muted);
-  font-size: 1.08rem;
-}
-.cta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 24px;
-}
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  text-decoration: none;
-  border-radius: 999px;
-  padding: 12px 18px;
-  font-weight: 600;
-  border: 1px solid var(--border);
-}
-.btn-primary {
-  background: var(--primary);
-  color: white;
-  border-color: transparent;
-}
-.btn-secondary {
-  background: var(--surface);
-  color: var(--text);
-}
-.section {
-  padding: 28px 0 48px;
-}
-.section h2 {
-  font-size: clamp(1.5rem, 2vw, 2.2rem);
-  letter-spacing: -0.03em;
-  margin: 0 0 8px;
-}
-.section p.intro {
-  color: var(--muted);
-  margin: 0 0 22px;
-  max-width: 70ch;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 18px;
-}
-.card {
-  grid-column: span 6;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 22px;
-  box-shadow: var(--shadow);
-}
-.card.large { grid-column: span 12; }
-.block-tag {
-  display: inline-block;
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 8px;
-}
-.card h3 {
-  margin: 0 0 6px;
-  font-size: 1.35rem;
-  letter-spacing: -0.03em;
-}
-.card .subtitle {
-  color: var(--muted);
-  margin-bottom: 16px;
-}
-.chapter-list {
-  margin: 0;
-  padding-left: 20px;
-}
-.chapter-list li {
-  margin: 8px 0;
-}
-.steps {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
-}
-.steps ol {
-  margin: 0;
-  padding-left: 22px;
-}
-.steps li {
-  margin: 12px 0;
-}
-code, pre {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-}
-pre {
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 18px;
-  overflow: auto;
-  white-space: pre-wrap;
-}
-footer {
-  padding: 34px 0 64px;
-  color: var(--muted);
-}
-.small {
-  font-size: 14px;
-}
-@media (max-width: 860px) {
-  .card, .card.large { grid-column: span 12; }
-  h1 { max-width: none; }
-  .nav { align-items: flex-start; flex-direction: column; }
-}
-</style>
+    :root,[data-theme="light"]{
+      --color-bg:#f7f6f2;--color-surface:#f9f8f5;--color-surface-2:#fbfbf9;
+      --color-surface-offset:#f3f0ec;--color-divider:#dcd9d5;--color-border:#d4d1ca;
+      --color-text:#28251d;--color-text-muted:#7a7974;--color-text-faint:#bab9b4;
+      --color-primary:#01696f;--color-primary-hover:#0c4e54;--color-primary-highlight:#cedcd8;
+      --font-display:'Lora',Georgia,serif;
+      --font-body:'Inter','Helvetica Neue',sans-serif;
+      --text-xs:clamp(0.75rem,0.7rem + 0.25vw,0.875rem);
+      --text-sm:clamp(0.875rem,0.8rem + 0.35vw,1rem);
+      --text-base:clamp(1rem,0.95rem + 0.25vw,1.125rem);
+      --text-lg:clamp(1.125rem,1rem + 0.75vw,1.5rem);
+      --text-xl:clamp(1.5rem,1.2rem + 1.25vw,2.25rem);
+      --text-2xl:clamp(2rem,1.2rem + 2.5vw,3.5rem);
+      --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;
+      --space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;--space-12:3rem;
+      --space-16:4rem;--space-20:5rem;
+      --radius-sm:.375rem;--radius-md:.5rem;--radius-lg:.75rem;--radius-xl:1rem;
+      --shadow-sm:0 1px 2px oklch(0.2 0.01 80/0.06);
+      --shadow-md:0 4px 12px oklch(0.2 0.01 80/0.08);
+      --shadow-lg:0 12px 32px oklch(0.2 0.01 80/0.12);
+      --transition-interactive:180ms cubic-bezier(0.16,1,0.3,1);
+      --content-default:960px;--content-narrow:680px;
+    }
+    [data-theme="dark"]{
+      --color-bg:#171614;--color-surface:#1c1b19;--color-surface-2:#201f1d;
+      --color-surface-offset:#1d1c1a;--color-divider:#262523;--color-border:#393836;
+      --color-text:#cdccca;--color-text-muted:#797876;--color-text-faint:#5a5957;
+      --color-primary:#4f98a3;--color-primary-hover:#227f8b;--color-primary-highlight:#313b3b;
+      --shadow-sm:0 1px 2px oklch(0 0 0/0.2);
+      --shadow-md:0 4px 12px oklch(0 0 0/0.3);
+      --shadow-lg:0 12px 32px oklch(0 0 0/0.4);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth;scroll-padding-top:80px}
+    body{min-height:100dvh;line-height:1.7;font-family:var(--font-body);font-size:var(--text-base);color:var(--color-text);background:var(--color-bg)}
+    img{display:block;max-width:100%;height:auto}
+    h1,h2,h3,h4{text-wrap:balance;line-height:1.2;font-family:var(--font-display)}
+    p,li{text-wrap:pretty;max-width:72ch}
+    a{color:var(--color-primary);text-decoration:none;transition:color var(--transition-interactive)}
+    a:hover{color:var(--color-primary-hover)}
+    button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
+
+    /* NAV */
+    .site-nav{position:sticky;top:0;z-index:100;background:var(--color-surface);border-bottom:1px solid var(--color-divider);box-shadow:var(--shadow-sm)}
+    .nav-inner{max-width:var(--content-default);margin-inline:auto;padding-inline:var(--space-6);display:flex;align-items:center;justify-content:space-between;height:64px}
+    .nav-logo{display:flex;align-items:center;gap:var(--space-3);font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;color:var(--color-text);text-decoration:none}
+    .nav-logo svg{flex-shrink:0}
+    .nav-links{display:flex;gap:var(--space-1);align-items:center}
+    .nav-link{padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);font-size:var(--text-sm);color:var(--color-text-muted);font-weight:500;transition:color var(--transition-interactive),background var(--transition-interactive)}
+    .nav-link:hover,.nav-link.active{color:var(--color-primary);background:var(--color-primary-highlight)}
+    .nav-right{display:flex;align-items:center;gap:var(--space-2)}
+    .theme-btn{width:36px;height:36px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);transition:color var(--transition-interactive),background var(--transition-interactive)}
+    .theme-btn:hover{background:var(--color-surface-offset);color:var(--color-text)}
+    .hamburger{display:none;width:36px;height:36px;align-items:center;justify-content:center;border-radius:var(--radius-md);color:var(--color-text-muted)}
+    .hamburger:hover{background:var(--color-surface-offset)}
+    .mobile-menu{display:none;position:fixed;inset:64px 0 0 0;background:var(--color-surface);z-index:99;padding:var(--space-4);flex-direction:column;gap:var(--space-1)}
+    .mobile-menu.open{display:flex}
+    .mobile-menu .nav-link{font-size:var(--text-base);padding:var(--space-3) var(--space-4)}
+
+    /* PAGES */
+    .page{display:none}
+    .page.active{display:block}
+
+    /* HOME HERO */
+    .hero{padding:clamp(var(--space-12),8vw,var(--space-20)) var(--space-6);text-align:center;max-width:var(--content-narrow);margin-inline:auto}
+    .hero-tag{display:inline-block;font-size:var(--text-xs);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--color-primary);background:var(--color-primary-highlight);padding:var(--space-1) var(--space-3);border-radius:var(--radius-full);margin-bottom:var(--space-6)}
+    .hero h1{font-size:var(--text-2xl);font-weight:600;color:var(--color-text);margin-bottom:var(--space-6)}
+    .hero p{font-size:var(--text-lg);color:var(--color-text-muted);line-height:1.6;max-width:58ch;margin-inline:auto}
+
+    /* BOOKS GRID */
+    .books-section{padding:clamp(var(--space-8),5vw,var(--space-16)) var(--space-6);max-width:var(--content-default);margin-inline:auto}
+    .books-section h2{font-size:var(--text-xl);text-align:center;margin-bottom:var(--space-10);color:var(--color-text)}
+    .books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:var(--space-6)}
+    .book-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-8);cursor:pointer;transition:box-shadow var(--transition-interactive),transform var(--transition-interactive),border-color var(--transition-interactive);position:relative;overflow:hidden}
+    .book-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);border-color:var(--color-primary)}
+    .book-card.available:hover .book-arrow{opacity:1;transform:translateX(0)}
+    .book-card.coming-soon{opacity:.65;cursor:default}
+    .book-card.coming-soon:hover{transform:none;box-shadow:var(--shadow-sm)}
+    .book-num{font-size:var(--text-xs);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-faint);margin-bottom:var(--space-4)}
+    .book-icon{width:48px;height:48px;border-radius:var(--radius-lg);background:var(--color-primary-highlight);display:flex;align-items:center;justify-content:center;margin-bottom:var(--space-5);color:var(--color-primary)}
+    .book-card h3{font-size:var(--text-lg);font-weight:600;color:var(--color-text);margin-bottom:var(--space-3)}
+    .book-card p{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.6}
+    .book-badge{display:inline-block;margin-top:var(--space-4);font-size:var(--text-xs);font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:2px var(--space-2);border-radius:var(--radius-full);background:var(--color-surface-offset);color:var(--color-text-faint)}
+    .book-badge.ready{background:var(--color-primary-highlight);color:var(--color-primary)}
+    .book-arrow{position:absolute;bottom:var(--space-6);right:var(--space-6);color:var(--color-primary);opacity:0;transform:translateX(-4px);transition:opacity var(--transition-interactive),transform var(--transition-interactive)}
+
+    /* BOOK PAGE */
+    .book-page-header{background:var(--color-surface);border-bottom:1px solid var(--color-divider);padding:clamp(var(--space-10),6vw,var(--space-16)) var(--space-6)}
+    .book-page-header-inner{max-width:var(--content-narrow);margin-inline:auto}
+    .back-btn{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-6);transition:color var(--transition-interactive)}
+    .back-btn:hover{color:var(--color-primary)}
+    .back-btn svg{transition:transform var(--transition-interactive)}
+    .back-btn:hover svg{transform:translateX(-3px)}
+    .book-page-header .book-num{font-size:var(--text-xs);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary);margin-bottom:var(--space-3)}
+    .book-page-header h1{font-size:var(--text-2xl);font-weight:600;color:var(--color-text);margin-bottom:var(--space-5)}
+    .book-page-header p{font-size:var(--text-lg);color:var(--color-text-muted);line-height:1.6}
+
+    /* TOC */
+    .toc-section{padding:var(--space-10) var(--space-6);max-width:var(--content-narrow);margin-inline:auto;border-bottom:1px solid var(--color-divider)}
+    .toc-section h2{font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-6);color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.06em;font-family:var(--font-body)}
+    .toc-list{list-style:none;display:flex;flex-direction:column;gap:var(--space-1)}
+    .toc-item a{display:flex;align-items:center;gap:var(--space-4);padding:var(--space-3) var(--space-4);border-radius:var(--radius-md);color:var(--color-text-muted);font-size:var(--text-sm);transition:background var(--transition-interactive),color var(--transition-interactive)}
+    .toc-item a:hover{background:var(--color-surface-offset);color:var(--color-primary)}
+    .toc-num{width:28px;height:28px;border-radius:var(--radius-sm);background:var(--color-surface-offset);display:flex;align-items:center;justify-content:center;font-size:var(--text-xs);font-weight:700;color:var(--color-text-faint);flex-shrink:0}
+
+    /* CONTENT */
+    .book-content{padding:var(--space-12) var(--space-6);max-width:var(--content-narrow);margin-inline:auto}
+    .book-content h2{font-size:var(--text-xl);font-weight:600;color:var(--color-text);margin-top:var(--space-12);margin-bottom:var(--space-6);padding-top:var(--space-10);border-top:1px solid var(--color-divider)}
+    .book-content h2:first-child{margin-top:0;padding-top:0;border-top:none}
+    .book-content h3{font-size:var(--text-lg);font-weight:600;color:var(--color-text);margin-top:var(--space-8);margin-bottom:var(--space-4);font-family:var(--font-body)}
+    .book-content p{font-size:var(--text-base);color:var(--color-text);line-height:1.8;margin-bottom:var(--space-5)}
+    .book-content .pullquote{font-family:var(--font-display);font-size:var(--text-lg);font-style:italic;color:var(--color-primary);border-left:3px solid var(--color-primary-highlight);padding-left:var(--space-6);margin:var(--space-8) 0}
+    .book-content .refs{margin-top:var(--space-12);padding-top:var(--space-8);border-top:1px solid var(--color-divider)}
+    .book-content .refs h2{font-size:var(--text-base);font-family:var(--font-body);font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-muted);margin-top:0;border-top:none;padding-top:0}
+    .book-content .refs p{font-size:var(--text-sm);color:var(--color-text-muted)}
+
+    @media(max-width:768px){
+      .nav-links{display:none}
+      .hamburger{display:flex}
+      .books-grid{grid-template-columns:1fr}
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <span>Projeto SABER</span>
-      </div>
-      <div style="display:flex; gap:16px; flex-wrap:wrap; align-items:center;">
-        <a href="#blocos">Blocos</a>
-        <a href="#github-pages">GitHub Pages</a>
-        <a href="#estrutura">Estrutura</a>
-        <button class="theme-toggle" data-theme-toggle aria-label="Alternar tema">Tema</button>
-      </div>
+
+<!-- NAV -->
+<nav class="site-nav" role="navigation" aria-label="Navegação principal">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#" onclick="showPage('home');return false">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-label="Logo Projeto SABER" role="img">
+        <rect width="32" height="32" rx="8" fill="var(--color-primary)"/>
+        <text x="16" y="22" font-size="16" font-family="Georgia,serif" font-weight="700" text-anchor="middle" fill="white">S</text>
+      </svg>
+      Projeto SABER
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="#" onclick="showPage('home');return false">Início</a>
+      <a class="nav-link" href="#" onclick="showBook('saber-fazer');return false">Saber Fazer</a>
     </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="container">
-        <span class="kicker">Site estático para GitHub Pages</span>
-        <h1>Como publicar o Projeto SABER no GitHub Pages</h1>
-        <p class="lead">Se já escolheste a opção 1, estás no caminho certo: GitHub + GitHub Pages é a forma mais simples, gratuita e robusta de pôr todos os teus ficheiros online com navegação, leitura limpa e um link público fácil de partilhar.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#github-pages">Ver os passos</a>
-          <a class="btn btn-secondary" href="#blocos">Ver estrutura sugerida</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="github-pages">
-      <div class="container">
-        <h2>Como criar GitHub Pages</h2>
-        <p class="intro">Faz isto uma única vez no teu repositório. Depois, cada atualização é só carregar novos ficheiros e esperar alguns segundos.</p>
-        <div class="steps">
-          <ol>
-            <li>Entra no teu repositório no GitHub.</li>
-            <li>Clica em <strong>Settings</strong> no menu superior do repositório.</li>
-            <li>Na coluna da esquerda, entra em <strong>Pages</strong>.</li>
-            <li>Em <strong>Build and deployment</strong>, escolhe <strong>Deploy from a branch</strong>.</li>
-            <li>Em <strong>Branch</strong>, seleciona <strong>main</strong> e, na pasta, escolhe <strong>/root</strong>.</li>
-            <li>Clica em <strong>Save</strong>.</li>
-            <li>Espera cerca de 1 a 3 minutos. O GitHub vai mostrar o link do teu site, normalmente no formato <code>https://teu-utilizador.github.io/nome-do-repositorio/</code>.</li>
-            <li>Garante que o ficheiro principal se chama <code>index.html</code> e está na raiz do repositório.</li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="estrutura">
-      <div class="container">
-        <h2>Estrutura recomendada</h2>
-        <p class="intro">Esta organização ajuda-te a manter os blocos separados, facilita a atualização dos ficheiros e deixa o projeto preparado para crescer sem se tornar confuso.</p>
-        <pre>projeto-saber/
-├── index.html
-├── README.md
-├── 01_SaberSentir/
-├── 02_SaberSer/
-├── 03_SaberSaber/
-├── 04_SaberFazer/
-├── 05_SaberEstar/
-└── 06_Integracao/</pre>
-      </div>
-    </section>
-
-    <section class="section" id="blocos">
-      <div class="container">
-        <h2>Blocos do projeto</h2>
-        <p class="intro">Abaixo tens a arquitetura editorial completa do Projeto SABER, tal como a organizámos ao longo da tua obra.</p>
-        <div class="grid">
-          
-    <article class="card" id="01_SaberSentir">
-      <div class="block-tag">01_SaberSentir</div>
-      <h3>Saber Sentir</h3>
-      <div class="subtitle">Bloco 1 — A Gramática da Experiência Emocional</div>
-      <ol class="chapter-list">
-        <li>Capítulo 1 — A Gramática da Experiência</li>
-<li>Capítulo 2 — Consciência Emocional</li>
-<li>Capítulo 3 — Autorregulação e Maturidade</li>
-<li>Capítulo 4 — Empatia e Presença</li>
-<li>Capítulo 5 — Liderança</li>
-<li>Capítulo 6 — Aprendizagem</li>
-<li>Capítulo 7 — Emoção, Conflito e Reparação</li>
-<li>Capítulo 8 — Transformação Digital</li>
-<li>Capítulo 9 — Observação</li>
-      </ol>
-    </article>
-    
-    <article class="card" id="02_SaberSer">
-      <div class="block-tag">02_SaberSer</div>
-      <h3>Saber Ser</h3>
-      <div class="subtitle">Bloco 2 — Habitar a Própria Vida</div>
-      <ol class="chapter-list">
-        <li>Capítulo 1 — O Centro Invisível</li>
-<li>Capítulo 2 — Identidade e Autoconceito</li>
-<li>Capítulo 3 — Valores e Escolhas</li>
-<li>Capítulo 4 — Caráter e Integridade</li>
-<li>Capítulo 5 — Autonomia, Agência e Responsabilidade</li>
-<li>Capítulo 6 — Autenticidade, Adaptação e Coerência</li>
-<li>Capítulo 7 — Desenvolvimento ao Longo da Vida</li>
-<li>Capítulo 8 — Saber Ser e Relação com os Outros</li>
-<li>Capítulo 9 — Saber Ser e Trabalho</li>
-<li>Capítulo 10 — Saber Ser e Liderança</li>
-      </ol>
-    </article>
-    
-    <article class="card" id="03_SaberSaber">
-      <div class="block-tag">03_SaberSaber</div>
-      <h3>Saber Saber</h3>
-      <div class="subtitle">Bloco 3 — A Arte de Aprender a Aprender</div>
-      <ol class="chapter-list">
-        <li>Capítulo 1 — O Que Significa Saber</li>
-<li>Capítulo 2 — Literacia e Compreensão</li>
-<li>Capítulo 3 — Conhecimento, Aprendizagem e Desenvolvimento</li>
-<li>Capítulo 4 — Pensamento Crítico</li>
-<li>Capítulo 5 — Metacognição e Aprendizagem Autorregulada</li>
-<li>Capítulo 6 — Curiosidade, Motivação e Abertura</li>
-<li>Capítulo 7 — Conhecimento e Erro</li>
-<li>Capítulo 8 — Saber Saber e Emoções</li>
-<li>Capítulo 9 — Saber Saber e Relações</li>
-<li>Capítulo 10 — Desenvolver o Saber Saber</li>
-      </ol>
-    </article>
-    
-    <article class="card" id="04_SaberFazer">
-      <div class="block-tag">04_SaberFazer</div>
-      <h3>Saber Fazer</h3>
-      <div class="subtitle">Bloco 4 — Da Intenção à Ação</div>
-      <ol class="chapter-list">
-        <li>Capítulo 1 — Da Intenção à Ação</li>
-<li>Capítulo 2 — Autoeficácia e Agência</li>
-<li>Capítulo 3 — Competência e Desempenho</li>
-<li>Capítulo 4 — Aprendizagem Experiencial</li>
-<li>Capítulo 5 — Prática Deliberada e Melhoria</li>
-<li>Capítulo 6 — Resolução de Problemas</li>
-<li>Capítulo 7 — Tomada de Decisão</li>
-<li>Capítulo 8 — Organização e Produtividade</li>
-<li>Capítulo 9 — Trabalho em Equipa</li>
-<li>Capítulo 10 — Comunicação Orientada para a Ação</li>
-<li>Capítulo 11 — Inovação e Execução</li>
-<li>Capítulo 12 — Saber Fazer e Emoções</li>
-      </ol>
-    </article>
-    
-    <article class="card" id="05_SaberEstar">
-      <div class="block-tag">05_SaberEstar</div>
-      <h3>Saber Estar</h3>
-      <div class="subtitle">Bloco 5 — A Presença que Conta</div>
-      <ol class="chapter-list">
-        <li>Capítulo 1 — A Presença que Conta</li>
-<li>Capítulo 2 — Comunicação, Escuta e Contexto</li>
-<li>Capítulo 3 — Respeito e Diferença</li>
-<li>Capítulo 4 — Saber Estar em Equipas</li>
-<li>Capítulo 5 — Conflito, Desacordo e Reparação</li>
-<li>Capítulo 6 — Ética Relacional</li>
-<li>Capítulo 7 — Saber Estar na Educação</li>
-<li>Capítulo 8 — Saber Estar na Liderança</li>
-<li>Capítulo 9 — Saber Estar em Ambientes Digitais</li>
-<li>Capítulo 10 — O Que Observar</li>
-      </ol>
-    </article>
-    
-    <article class="card" id="06_Integracao">
-      <div class="block-tag">06_Integracao</div>
-      <h3>Integração</h3>
-      <div class="subtitle">Bloco 6 — Os Cinco Saberes em Ação</div>
-      <ol class="chapter-list">
-        <li>Capítulo 1 — Por Que Razão Integrar</li>
-<li>Capítulo 2 — O Mapa dos Cinco Saberes</li>
-<li>Capítulo 3 — Um Modelo de Integração</li>
-<li>Capítulo 4 — Integração e Agência</li>
-<li>Capítulo 5 — Tensões e Dilemas</li>
-<li>Capítulo 6 — O Indivíduo Integrado</li>
-<li>Capítulo 7 — Educação Integrada</li>
-<li>Capítulo 8 — Formação Executiva Integrada</li>
-<li>Capítulo 9 — Liderança Integrada</li>
-<li>Capítulo 10 — Equipas, Cultura e Transformação Digital</li>
-<li>Capítulo 11 — Ética Integrada</li>
-      </ol>
-    </article>
-    
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <h2>Atualizar o site</h2>
-        <p class="intro">Depois do Pages estar ativo, atualizar é simples. O truque é nunca mexer no processo: só substituir ficheiros, fazer commit e aguardar nova publicação.</p>
-        <div class="steps">
-          <ol>
-            <li>Carrega novos ficheiros para o repositório, ou arrasta-os para a interface web do GitHub.</li>
-            <li>Se mudares um capítulo, mantém o mesmo nome do ficheiro para não quebrares links.</li>
-            <li>No fim da página, escreve uma mensagem curta como <code>Atualização do Bloco 3</code>.</li>
-            <li>Clica em <strong>Commit changes</strong>.</li>
-            <li>Espera 1 ou 2 minutos e faz refresh ao site público.</li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <h2>Erros comuns</h2>
-        <div class="grid">
-          <article class="card large">
-            <h3>O site não aparece</h3>
-            <ol class="chapter-list">
-              <li>Verifica se existe um <code>index.html</code> na raiz do repositório.</li>
-              <li>Confirma se o Pages está configurado para a branch <code>main</code> e pasta <code>/root</code>.</li>
-              <li>Espera alguns minutos; a primeira publicação pode demorar mais.</li>
-              <li>Se o repositório for privado, confirma se o teu plano GitHub permite Pages privado ou torna-o público.</li>
-            </ol>
-          </article>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container small">
-      Projeto SABER — estrutura editorial e publicação web via GitHub Pages.
+    <div class="nav-right">
+      <button class="theme-btn" data-theme-toggle aria-label="Alternar tema">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+      <button class="hamburger" aria-label="Menu" onclick="toggleMenu()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
     </div>
-  </footer>
+  </div>
+</nav>
 
-  <script>
-    (function() {
-      const btn = document.querySelector('[data-theme-toggle]');
-      const root = document.documentElement;
-      let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      root.setAttribute('data-theme', theme);
-      btn.addEventListener('click', function() {
-        theme = theme === 'dark' ? 'light' : 'dark';
-        root.setAttribute('data-theme', theme);
-      });
-    })();
-  </script>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a class="nav-link" href="#" onclick="showPage('home');toggleMenu();return false">Início</a>
+  <a class="nav-link" href="#" onclick="showBook('saber-fazer');toggleMenu();return false">Saber Fazer</a>
+</div>
+
+<!-- HOME PAGE -->
+<div id="page-home" class="page active">
+  <section class="hero">
+    <span class="hero-tag">Uma série de 6 livros</span>
+    <h1>Projeto SABER</h1>
+    <p>Uma exploração profunda das seis dimensões do conhecimento humano — Sentir, Ser, Saber, Fazer, Estar e Integração.</p>
+  </section>
+
+  <section class="books-section">
+    <h2>Os Seis Livros</h2>
+    <div class="books-grid">
+
+      <!-- Saber Sentir -->
+      <div class="book-card coming-soon">
+        <div class="book-num">Livro 01</div>
+        <div class="book-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>Saber Sentir</h3>
+        <p>A dimensão emocional e afetiva do conhecimento. Como o que sentimos molda o que aprendemos e como vivemos.</p>
+        <span class="book-badge">Em breve</span>
+      </div>
+
+      <!-- Saber Ser -->
+      <div class="book-card coming-soon">
+        <div class="book-num">Livro 02</div>
+        <div class="book-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </div>
+        <h3>Saber Ser</h3>
+        <p>Identidade, valores e presença. A dimensão que nos ancora enquanto agimos no mundo.</p>
+        <span class="book-badge">Em breve</span>
+      </div>
+
+      <!-- Saber Saber -->
+      <div class="book-card coming-soon">
+        <div class="book-num">Livro 03</div>
+        <div class="book-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <h3>Saber Saber</h3>
+        <p>O conhecimento sobre o conhecimento. Metacognição, aprendizagem e epistemologia aplicada.</p>
+        <span class="book-badge">Em breve</span>
+      </div>
+
+      <!-- Saber Fazer — DISPONÍVEL -->
+      <div class="book-card available" onclick="showBook('saber-fazer')" role="button" tabindex="0" aria-label="Abrir Saber Fazer">
+        <div class="book-num">Livro 04</div>
+        <div class="book-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h3>Saber Fazer</h3>
+        <p>Competência aplicada, execução inteligente e transformação do conhecimento em ação concreta.</p>
+        <span class="book-badge ready">Disponível</span>
+        <div class="book-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+
+      <!-- Saber Estar -->
+      <div class="book-card coming-soon">
+        <div class="book-num">Livro 05</div>
+        <div class="book-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3>Saber Estar</h3>
+        <p>Presença, relacionamento e contexto. A dimensão social e situacional do saber humano.</p>
+        <span class="book-badge">Em breve</span>
+      </div>
+
+      <!-- Integração -->
+      <div class="book-card coming-soon">
+        <div class="book-num">Livro 06</div>
+        <div class="book-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h3>Integração</h3>
+        <p>A síntese das cinco dimensões. Como o SABER completo se manifesta numa vida inteira.</p>
+        <span class="book-badge">Em breve</span>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- SABER FAZER PAGE -->
+<div id="page-saber-fazer" class="page">
+  <div class="book-page-header">
+    <div class="book-page-header-inner">
+      <a class="back-btn" href="#" onclick="showPage('home');return false">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Todos os livros
+      </a>
+      <div class="book-num">Livro 04 — Projeto SABER</div>
+      <h1>Saber Fazer</h1>
+      <p>Competência aplicada, execução inteligente e a transformação do conhecimento em ação concreta no mundo.</p>
+    </div>
+  </div>
+
+  <nav class="toc-section" aria-label="Índice">
+    <h2>Índice</h2>
+    <ul class="toc-list">
+      <li class="toc-item"><a href="#sf-prologo"><span class="toc-num">—</span>Prólogo</a></li>
+      <li class="toc-item"><a href="#sf-c1"><span class="toc-num">1</span>O valor da ação</a></li>
+      <li class="toc-item"><a href="#sf-c2"><span class="toc-num">2</span>Competência e contexto</a></li>
+      <li class="toc-item"><a href="#sf-c3"><span class="toc-num">3</span>Problemas, soluções e decisão</a></li>
+      <li class="toc-item"><a href="#sf-c4"><span class="toc-num">4</span>Transferir o que se aprende</a></li>
+      <li class="toc-item"><a href="#sf-c5"><span class="toc-num">5</span>Aprender fazendo</a></li>
+      <li class="toc-item"><a href="#sf-c6"><span class="toc-num">6</span>Saber Fazer na liderança</a></li>
+      <li class="toc-item"><a href="#sf-c7"><span class="toc-num">7</span>Saber Fazer e inovação</a></li>
+      <li class="toc-item"><a href="#sf-c8"><span class="toc-num">8</span>Saber Fazer e ética da execução</a></li>
+      <li class="toc-item"><a href="#sf-c9"><span class="toc-num">9</span>O que observar</a></li>
+      <li class="toc-item"><a href="#sf-c10"><span class="toc-num">10</span>Para que serve este saber</a></li>
+      <li class="toc-item"><a href="#sf-epilogo"><span class="toc-num">—</span>Epílogo</a></li>
+    </ul>
+  </nav>
+
+  <article class="book-content">
+
+    <h2 id="sf-prologo">Prólogo</h2>
+    <p class="pullquote">Chega um momento em que saber já não basta. É preciso agir.</p>
+    <p>O Saber Fazer é a dimensão em que o conhecimento ganha corpo, direção e consequência. É aqui que a compreensão se transforma em decisão, que a intenção se converte em execução e que a aprendizagem passa da formulação à realidade. Este livro não olha apenas para a técnica, mas para a competência aplicada, para a capacidade de resolver problemas, adaptar-se a contextos e produzir resultados com critério.</p>
+    <p>Num mundo em que tanto se valoriza a velocidade, o Saber Fazer lembra-nos de uma verdade mais exigente: fazer bem não é fazer depressa. É saber integrar conhecimento, contexto, recursos, responsabilidade e avaliação num mesmo gesto de ação inteligente.</p>
+    <p>A literatura sobre empregabilidade, aprendizagem autorregulada, competências aplicadas e transferibilidade da aprendizagem ajuda a compreender esta dimensão como uma ponte entre o saber e o mundo (OECD, 2024; Tomlinson, 2017; Panadero, 2017).</p>
+    <p>Este livro foi escrito para estudantes, profissionais, líderes e equipas que precisam de transformar conhecimento em desempenho sem perder qualidade humana.</p>
+
+    <h2 id="sf-c1">Capítulo 1 — O valor da ação</h2>
+    <p class="pullquote">Fazer é uma forma de pensar com as mãos, com o corpo e com a decisão.</p>
+    <p>O Saber Fazer começa quando a pessoa deixa de apenas compreender um problema e passa a intervir nele. A ação competente não é impulsiva nem mecânica. Exige leitura da situação, escolha de critérios, uso de ferramentas e capacidade de ajustar o curso quando a realidade contradiz o plano inicial.</p>
+    <p>Na vida profissional, esta dimensão é muitas vezes confundida com produtividade. Mas produzir muito não é o mesmo que produzir bem. O Saber Fazer interessa-se pela qualidade da execução, pela inteligência prática e pela capacidade de gerar valor sem desperdiçar recursos humanos ou materiais.</p>
+    <p>A literatura sobre competências e empregabilidade mostra que o desempenho depende do equilíbrio entre conhecimento, aplicação, autonomia, colaboração e adaptabilidade (Tomlinson, 2017; Yorke, 2006).</p>
+    <h3>Uma ideia de base</h3>
+    <p>Saber fazer é transformar entendimento em intervenção competente.</p>
+
+    <h2 id="sf-c2">Capítulo 2 — Competência e contexto</h2>
+    <p class="pullquote">Nenhuma competência existe no vazio.</p>
+    <p>O Saber Fazer depende sempre do contexto em que é mobilizado. Uma pessoa pode ser altamente competente num ambiente e sentir-se perdida noutro. Fazer bem não é apenas dominar uma técnica; é saber aplicá-la em circunstâncias concretas, com recursos reais e sob condições incertas.</p>
+    <p>Por essa razão, o Saber Fazer nunca deve ser avaliado apenas pela aparência do resultado final. É preciso considerar o processo, a complexidade, as limitações existentes e a forma como a pessoa tomou decisões.</p>
+    <p>Em formação e educação superior, um estudante pode dominar teoricamente um modelo e revelar dificuldade em o usar para resolver um caso prático. O ensino de qualidade liga compreensão e execução.</p>
+    <p>A aprendizagem autorregulada mostra que a execução melhora quando a pessoa sabe planear, monitorizar e rever a própria ação (Panadero, 2017; Panadero et al., 2017).</p>
+    <h3>Pequeno princípio</h3>
+    <p>A competência não vive só no sujeito; vive também na forma como o contexto a permite ou a dificulta.</p>
+
+    <h2 id="sf-c3">Capítulo 3 — Problemas, soluções e decisão</h2>
+    <p class="pullquote">Grande parte do Saber Fazer consiste em resolver problemas.</p>
+    <p>Resolver problemas significa compreender a situação, identificar variáveis, considerar alternativas, escolher um caminho e corrigir a rota. É um processo cognitivo, prático e relacional.</p>
+    <p>Em ambientes complexos, a solução rápida pode não ser a melhor. A boa decisão é frequentemente a que suporta melhor o teste da realidade. O Saber Fazer exige tolerância à ambiguidade e capacidade de agir sem depender de certeza absoluta.</p>
+    <h3>Exemplo breve</h3>
+    <p>Numa equipa de produto, dois caminhos parecem possíveis: lançar rapidamente uma solução mínima ou esperar para integrar mais funcionalidades. A escolha competente considera mercado, capacidade interna, risco e impacto no cliente. Saber fazer é escolher com critério.</p>
+
+    <h2 id="sf-c4">Capítulo 4 — Transferir o que se aprende</h2>
+    <p class="pullquote">Uma das marcas mais fortes do Saber Fazer é a transferência.</p>
+    <p>Saber transferir significa usar num novo contexto aquilo que se aprendeu noutro. A transferência é relevante na formação ao longo da vida, na reconversão profissional e na aprendizagem em ambientes mutáveis.</p>
+    <p>A transferência melhora quando a pessoa compreende princípios e não apenas procedimentos. Quem sabe apenas repetir depende do contexto inicial; quem compreende profundamente adapta-se com maior liberdade (Panadero, 2017).</p>
+    <p>Projetos, protótipos, simulações e tarefas autênticas permitem provar o saber no real. O Saber Fazer deixa então de ser promessa e passa a ser entrega.</p>
+
+    <h2 id="sf-c5">Capítulo 5 — Aprender fazendo</h2>
+    <p class="pullquote">Aprender fazendo é uma via sólida para desenvolver competência prática.</p>
+    <p>Projetos, estudos de caso, simulações e problemas autênticos permitem testar hipóteses, errar, corrigir estratégias e aperfeiçoar a execução. O erro pode fazer parte da aprendizagem quando é acompanhado por reflexão e feedback.</p>
+    <p>Os contextos educativos e profissionais valorizam pessoas capazes de agir, adaptar-se e continuar a aprender em ambientes novos (Tomlinson, 2017; Yorke, 2006).</p>
+    <h3>Pequena imagem</h3>
+    <p>Uma sala de aula que resolve um problema real aproxima conhecimento e ação mais do que explicações abstratas sem tradução prática.</p>
+
+    <h2 id="sf-c6">Capítulo 6 — Saber Fazer na liderança</h2>
+    <p class="pullquote">A liderança é um dos lugares onde o Saber Fazer ganha forma concreta.</p>
+    <p>Liderar implica transformar intenção em organização, decisão em coordenação e estratégia em execução. Um líder que sabe fazer constrói processos, define prioridades, distribui responsabilidades e acompanha resultados.</p>
+    <p>O Saber Fazer em liderança não pode ser separado do Saber Ser, do Saber Estar e do Saber Sentir. Uma execução sem ética pode ser destrutiva; uma ação sem sensibilidade pode ferir a equipa; uma estratégia sem clareza emocional pode fracassar.</p>
+    <h3>Exemplo aplicado</h3>
+    <p>Numa reorganização de equipa, o líder redesenha papéis, clarifica expectativas, estabelece marcos e acompanha a transição. Se agir apenas por ordens, haverá resistência. Se combinar estrutura, diálogo e monitorização, poderá favorecer a adesão. Saber fazer é coordenar sem desumanizar.</p>
+
+    <h2 id="sf-c7">Capítulo 7 — Saber Fazer e inovação</h2>
+    <p class="pullquote">A inovação nasce da capacidade de experimentar, testar, refinar e concretizar.</p>
+    <p>Na prática, depende de disciplina, método e execução. Ferramentas novas não produzem transformação por si mesmas: é necessário aplicá-las, adaptar fluxos, corrigir erros e alinhar tecnologia com objetivos reais.</p>
+    <p>A capacidade de executar e reconfigurar a ação é central em contextos de mudança acelerada (OECD, 2024).</p>
+    <h3>Pequeno princípio</h3>
+    <p>A inovação precisa de imaginação, mas também de mãos capazes de a tornar visível.</p>
+
+    <h2 id="sf-c8">Capítulo 8 — Saber Fazer e ética da execução</h2>
+    <p class="pullquote">Fazer bem também é fazer com responsabilidade.</p>
+    <p>Nem toda a solução eficiente é justa. Nem todo o ganho de produtividade compensa o custo humano. Nem toda a automação é benéfica se produzir perda de dignidade, exclusão ou opacidade.</p>
+    <p>O Saber Fazer deve incluir julgamento ético. Uma ação competente deve ser avaliada pelo resultado e pelo modo como foi alcançado, sobretudo em gestão, marketing, atendimento ao cliente e transformação digital.</p>
+
+    <h2 id="sf-c9">Capítulo 9 — O que observar</h2>
+    <p>Indicadores úteis incluem executar com qualidade, resolver problemas, adaptar-se a imprevistos, cumprir objetivos, usar ferramentas adequadamente e transferir aprendizagens.</p>
+    <p>Também importa observar organização do trabalho, gestão do tempo, aprendizagem com o erro e ajustamento perante obstáculos. Em contextos colaborativos, conta a capacidade de coordenar-se com outros.</p>
+    <p>Estes sinais não devem ser usados de forma simplista. Uma execução rápida pode esconder pouca compreensão; uma execução lenta pode revelar maior rigor. É necessário ler desempenho, processo e contexto em conjunto.</p>
+
+    <h2 id="sf-c10">Capítulo 10 — Para que serve este saber</h2>
+    <p class="pullquote">O Saber Fazer dá ao conhecimento a dignidade da utilidade concreta.</p>
+    <p>Serve para que a aprendizagem não fique suspensa no abstrato, para que o talento não se desperdice e para que a competência se converta em valor. Fazer bem é produzir resultados sustentáveis, ajustados e humanos.</p>
+    <p>Em educação, aproxima teoria e prática. Em liderança, transforma intenção em ação. Em organizações, liga estratégia à execução. É a prova de que o saber se tornou mundo.</p>
+
+    <h2 id="sf-epilogo">Epílogo</h2>
+    <p>Saber Fazer é aceitar que o conhecimento completa o seu ciclo quando se torna capaz de agir no real sem se perder nele. É a passagem da ideia para a obra, da intenção para o efeito e da compreensão para a transformação.</p>
+    <p>Fazer bem é uma forma de respeito pelo mundo, pelos outros e pelo próprio valor do que se sabe.</p>
+
+    <div class="refs">
+      <h2>Referências bibliográficas</h2>
+      <p>OECD. (2024). <em>The OECD Learning Compass 2030</em>. https://www.oecd.org/en/data/tools/oecd-learning-compass-2030.html</p>
+      <p>Panadero, E. (2017). A review of self-regulation theories: Implications for formative assessment. <em>Frontiers in Psychology, 8</em>, 422.</p>
+      <p>Tomlinson, M. (2017). Forms of graduate capital and their relationship to graduate employability. <em>Education + Training, 59</em>(4), 338–352.</p>
+      <p>Yorke, M. (2006). <em>Employability in higher education: What it is, what it is not</em>. Higher Education Academy.</p>
+    </div>
+  </article>
+</div>
+
+<script>
+(function(){
+  const r=document.documentElement,t=document.querySelector('[data-theme-toggle]');
+  let d=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+  r.setAttribute('data-theme',d);
+  if(t)t.addEventListener('click',()=>{d=d==='dark'?'light':'dark';r.setAttribute('data-theme',d)});
+})();
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showBook(slug){
+  showPage(slug);
+}
+
+function toggleMenu(){
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+
+document.querySelectorAll('.toc-item a').forEach(a=>{
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    const id=this.getAttribute('href').slice(1);
+    document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+  });
+});
+
+document.querySelectorAll('.book-card.available').forEach(card=>{
+  card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')card.click()});
+});
+</script>
 </body>
 </html>
